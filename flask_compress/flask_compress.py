@@ -11,7 +11,6 @@ from io import BytesIO
 
 from collections import defaultdict
 
-import brotli
 from flask import request, after_this_request, current_app
 
 
@@ -231,6 +230,7 @@ class Compress(object):
             return zlib.compress(response.get_data(),
                                  app.config['COMPRESS_DEFLATE_LEVEL'])
         elif algorithm == 'br':
+            import brotli
             return brotli.compress(response.get_data(),
                                    mode=app.config['COMPRESS_BR_MODE'],
                                    quality=app.config['COMPRESS_BR_LEVEL'],
