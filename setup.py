@@ -19,8 +19,8 @@ setup(
     platforms='any',
     install_requires=[
         'flask',
-        'brotli'
     ],
+    extras_require={'brotli':['brotli']},
     setup_requires=[
         'setuptools_scm',
     ],
