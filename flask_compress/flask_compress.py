@@ -12,7 +12,6 @@ from io import BytesIO
 from collections import defaultdict
 
 
-import zstandard
 
 from flask import request, after_this_request, current_app
 
@@ -247,4 +246,5 @@ class Compress(object):
                                    lgwin=app.config['COMPRESS_BR_WINDOW'],
                                    lgblock=app.config['COMPRESS_BR_BLOCK'])
         elif algorithm == 'zstd':
+            import zstandard
             return zstandard.ZstdCompressor(app.config['COMPRESS_ZSTD_LEVEL']).compress(response.get_data())
